@@ -1,0 +1,121 @@
+{% load static%}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Job Board</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'mainTemplate/img/favicon.png'%}"
+    />
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/bootstrap.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/owl.carousel.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/magnific-popup.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/font-awesome.min.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/themify-icons.css'%}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/nice-select.css'%}"
+    />
+    <link rel="stylesheet" href="{% static 'mainTemplate/css/flaticon.css'%}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/jquery-ui.css'%}"
+    />
+    <link rel="stylesheet" href="{% static 'mainTemplate/css/gijgo.css'%}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'mainTemplate/css/animate.min.css'%}"
+    />
+    <link rel="stylesheet" href="{% static 'mainTemplate/css/slicknav.css'%}" />
+    <link rel="stylesheet" href="{% static 'mainTemplate/css/style.css'%}" />
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+  </head>
+
+  <body>
+    <!-- header -->
+    {% include 'layout/header.html'%}
+
+    <!-- body -->
+    {% block body %}{% endblock body %}
+
+    <!-- footer-->
+    {% include 'layout/footer.html'%}
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="{%static 'mainTemplate/js/vendor/modernizr-3.5.0.min.js'%}"></script>
+    <script src="{%static 'mainTemplate/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/popper.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/bootstrap.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/owl.carousel.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/isotope.pkgd.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/ajax-form.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/waypoints.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.counterup.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/scrollIt.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/wow.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/nice-select.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/plugins.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/range.js' %}"></script>
+
+    <!--contact js-->
+    <script src="{%static 'mainTemplate/js/contact.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.form.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/jquery.validate.min.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/mail-script.js' %}"></script>
+    <script src="{%static 'mainTemplate/js/main.js' %}"></script>
+
+    <script>
+      $(function () {
+        $("#slider-range").slider({
+          range: true,
+          min: 0,
+          max: 24600,
+          values: [750, 24600],
+          slide: function (event, ui) {
+            $("#amount").val(
+              "$" + ui.values[0] + " - $" + ui.values[1] + "/ Year"
+            );
+          },
+        });
+        $("#amount").val(
+          "$" +
+            $("#slider-range").slider("values", 0) +
+            " - $" +
+            $("#slider-range").slider("values", 1) +
+            "/ Year"
+        );
+      });
+    </script>
+  </body>
+</html>

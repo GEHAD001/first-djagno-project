@@ -1,26 +1,45 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from .models import Job
 
 """
-(tob_list) => Job Page
+class  = table
+attribute = column
+object = row
 [
-    job_id 1, ---- cliecked id=1 ---> fetch job_id = 1 and put it in job_deatil Page
-    job_id 2,
-    job_id 3,
-    job_id 4,
-    ...
-    job_id n
+    object1, [row 1]
+    object1, [row 2]
+    object1, [row 3]
 ]
 """
 
 
-def job_list(request):
-    context = {"jobs": Job.objects.all()}
-    print(context)
-    return render(request, "pages/job_list.html", context)
+def jobs(request):
+    # call all row from database
+    jobs = Job.objects.all()
+
+    # sperate data on pages system
+    paginator = Paginator(jobs, 6)
+
+    # get the request page
+    current_page_number = request.GET.get("page", 1)
+
+    # return page object that contain the data
+    page = paginator.get_page(current_page_number)
+
+    page.adjusted_elided_pages = paginator.get_elided_page_range(
+        current_page_number, on_each_side=1, on_ends=1
+    )
+    context = {
+        "page": page,
+        "number_of_jobs": jobs.count(),
+    }
+    return render(request, "job/jobs.html", context)
 
 
-def job_detail(request, id):
-    context = {"job": Job.objects.get(id=id)}
-    print(context)
-    return render(request, "pages/job_detail.html", context)
+def job_detail(request, slug, id):
+    print(id)
+    print(slug)
+    job = Job.objects.get(slug=slug, id=id)
+    context = {"job": job}
+    return render(request, "job/job_detail.html", context)

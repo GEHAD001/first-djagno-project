@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
 
+app_name = "jobs"
+
 urlpatterns = [
-    path("", views.job_list),
-    path("<int:id>", views.job_detail),
+    path("", views.jobs, name="jobs"),
+    path("<str:slug>/id<int:id>", views.job_detail, name="job_detail"),
 ]
-# <int:id> mean will int value and store in in id
